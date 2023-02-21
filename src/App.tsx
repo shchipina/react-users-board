@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import './App.scss';
+import { PropTypes } from '@mui/material';
 import { UserList } from './components/UserList';
 import { AddUserForm } from './components/AddUserForm';
 import { AppContainer } from './components/AppContainer';
-import { UserWithColor } from './types';
+import { Color, User, UserWithColor } from './types';
+import { prepareUsers } from './helpers';
 
 const usersFromServer = [
   { id: 1, name: 'Joe Biden', carColorId: 5 },
@@ -21,10 +23,7 @@ const colorosFromServer = [
   { id: 7, name: 'Yellow' },
 ];
 
-const preparedUsers = usersFromServer.map(user => ({
-  ...user,
-  carColor: colorosFromServer.find(color => color.id === user.carColorId),
-}));
+const preparedUsers = prepareUsers(usersFromServer, colorosFromServer);
 
 export const App: React.FC = () => {
   const [users, setUsers] = useState<UserWithColor[]>(preparedUsers);
