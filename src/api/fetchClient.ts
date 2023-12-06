@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // returns a promise resolved after a given delay
 function wait(delay: number) {
